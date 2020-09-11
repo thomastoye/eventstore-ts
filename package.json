@@ -16,7 +16,7 @@
   ],
   "private": true,
   "scripts": {
-    "build": "tsc --build packages",
+    "build": "yarn workspace eventstore-ts-protos build && tsc --build packages",
     "format": "prettier --write . --ignore-path=.gitignore",
     "test": "prettier --check . --ignore-path=.gitignore"
   },

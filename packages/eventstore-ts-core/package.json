@@ -5,10 +5,16 @@
   "repository": "git@github.com:thomastoye/eventstore-ts.git",
   "author": "Thomas Toye <thomas@toye.io>",
   "license": "MIT",
+  "dependencies": {
+    "eventstore-ts-protos": "0.0.0",
+    "protobufjs": "^6.10.1"
+  },
   "devDependencies": {
+    "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "ts-node ./src/index.js"
   }
 }

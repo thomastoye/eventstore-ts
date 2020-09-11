@@ -2,7 +2,8 @@
   "compilerOptions": {
     "incremental": true,
     "target": "es2018",
-    "module": "ES6",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "declaration": true,
     "sourceMap": true,
     "strict": true,
@@ -11,6 +12,6 @@
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true // TODO might re-enable lib checks
+    "skipLibCheck": false
   }
 }

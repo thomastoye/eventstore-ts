@@ -1,10 +1,10 @@
 {
   "name": "eventstore-ts-protos",
   "version": "0.0.0",
-  "main": "dist/commonjs/compiled.cjs",
-  "type": "module",
-  "types": "dist/es6/compiled.d.ts",
-  "module": "dist/es6/compiled.js",
+  "main": "dist/commonjs/index.js",
+  "type": "commonjs",
+  "types": "dist/commonjs/index.d.ts",
+  "module": "dist/es6/index.js",
   "sideEffects": false,
   "repository": "git@github.com:thomastoye/eventstore-ts.git",
   "author": "Thomas Toye <thomas@toye.io>",
@@ -17,10 +17,10 @@
     "build": "yarn clean && yarn build:protos",
     "build:protos": "yarn build:protos:commonjs && yarn build:protos:es6",
     "build:protos:commonjs": "yarn build:protos:commonjs:js && yarn build:protos:commonjs:ts",
-    "build:protos:commonjs:js": "pbjs -w commonjs -o dist/commonjs/compiled.cjs -t static-module protos/**/*.proto",
-    "build:protos:commonjs:ts": "pbts -o dist/commonjs/compiled.d.ts dist/commonjs/compiled.cjs",
+    "build:protos:commonjs:js": "pbjs -w commonjs -o dist/commonjs/index.js -t static-module protos/**/*.proto",
+    "build:protos:commonjs:ts": "pbts -o dist/commonjs/index.d.ts dist/commonjs/index.js",
     "build:protos:es6": "yarn build:protos:es6:js && yarn build:protos:es6:ts",
-    "build:protos:es6:js": "pbjs -w es6 --es6 -o dist/es6/compiled.js -t static-module protos/**/*.proto",
-    "build:protos:es6:ts": "pbts -o dist/es6/compiled.d.ts dist/es6/compiled.js"
+    "build:protos:es6:js": "pbjs -w es6 --es6 -o dist/es6/index.mjs -t static-module protos/**/*.proto",
+    "build:protos:es6:ts": "pbts -o dist/es6/index.d.ts dist/es6/index.mjs"
   }
 }
