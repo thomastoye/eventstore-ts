@@ -1,0 +1,8 @@
+{
+  "name": "eventstore-ts",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "repository": "git@github.com:thomastoye/eventstore-ts.git",
+  "author": "Thomas Toye <thomas@toye.io>",
+  "license": "MIT"
+}
