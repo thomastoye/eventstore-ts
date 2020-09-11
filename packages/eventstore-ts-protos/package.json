@@ -1,14 +1,26 @@
 {
   "name": "eventstore-ts-protos",
   "version": "0.0.0",
-  "main": "dist/index.js",
+  "main": "dist/commonjs/compiled.js",
+  "type": "module",
+  "types": "dist/es6/compiled.d.ts",
+  "module": "dist/es6/compiled.js",
+  "sideEffects": false,
   "repository": "git@github.com:thomastoye/eventstore-ts.git",
   "author": "Thomas Toye <thomas@toye.io>",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.0.2"
+    "protobufjs": "^6.10.1"
   },
   "scripts": {
-    "build": "tsc"
+    "clean": "rm -rf dist && mkdir -p dist/es6 && mkdir -p dist/commonjs",
+    "build": "yarn clean && yarn build:protos",
+    "build:protos": "yarn build:protos:commonjs && yarn build:protos:es6",
+    "build:protos:commonjs": "yarn build:protos:commonjs:js && yarn build:protos:commonjs:ts",
+    "build:protos:commonjs:js": "pbjs -w commonjs -o dist/commonjs/compiled.js -t static-module protos/**/*.proto",
+    "build:protos:commonjs:ts": "pbts -o dist/commonjs/compiled.d.ts dist/commonjs/compiled.js",
+    "build:protos:es6": "yarn build:protos:es6:js && yarn build:protos:es6:ts",
+    "build:protos:es6:js": "pbjs -w es6 --es6 -o dist/es6/compiled.js -t static-module protos/**/*.proto",
+    "build:protos:es6:ts": "pbts -o dist/es6/compiled.d.ts dist/es6/compiled.js"
   }
 }
