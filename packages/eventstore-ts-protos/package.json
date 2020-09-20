@@ -22,5 +22,8 @@
     "build:protos:es6": "yarn build:protos:es6:js && yarn build:protos:es6:ts",
     "build:protos:es6:js": "pbjs -w es6 --es6 -o dist/es6/index.mjs -t static-module protos/**/*.proto",
     "build:protos:es6:ts": "pbts -o dist/es6/index.d.ts dist/es6/index.mjs"
+  },
+  "dependencies": {
+    "grpc-tools": "^1.9.1"
   }
 }

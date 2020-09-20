@@ -1,4 +1,22 @@
 import { event_store } from 'eventstore-ts-protos'
+import * as grpc from '@grpc/grpc-js'
+import protobuf from 'protobufjs'
+
+const Client = grpc.makeGenericClientConstructor({}, 'testname')
+const client = new Client(
+  'localhost:2113',
+  grpc.credentials.createInsecure()
+)
+
+const rpcImpl = (method: { name: string }, requestData: any, callback: grpc.requestCallback<Buffer>) => {
+  client.makeUnaryRequest(
+    method.name,
+    arg => arg,
+    arg => arg,
+    requestData,
+    callback
+  )
+}
 
 type Credentials = {
     username: string,
@@ -32,6 +50,14 @@ class EventStoreConnection {
     toString(): string {
         return `grpc://${this.#defaultUserCredentials?.username}:${this.#defaultUserCredentials?.password}@${this.#host}:${this.#port}`
     }
+
+    get grpcAddress(): string {
+        return `${this.#host}:${this.#port}`
+    }
+
+    get grpcClient() {
+        return new Client(this.grpcAddress, grpc.ChannelCredentials.createInsecure())
+    }
 }
 
 const connection = EventStoreConnection.create({
@@ -46,8 +72,6 @@ const connection = EventStoreConnection.create({
 
 console.log(connection.toString())
 
-// event_store.client.
-
 const message = event_store.client.streams.ReadReq.create({
     options: {
         stream: {
@@ -58,4 +82,8 @@ const message = event_store.client.streams.ReadReq.create({
     }
 })
 
-console.log(JSON.stringify(message, null, 2))
+
+
+// connection.grpcClient.waitForReady(new Date().getTime() + 100000, (err) => console.log('error in wait for ready', err))
+
+// console.log(JSON.stringify(message, null, 2))

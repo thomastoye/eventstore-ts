@@ -6,6 +6,7 @@
   "author": "Thomas Toye <thomas@toye.io>",
   "license": "MIT",
   "dependencies": {
+    "@grpc/grpc-js": "^1.1.6",
     "eventstore-ts-protos": "0.0.0",
     "protobufjs": "^6.10.1"
   },
@@ -15,6 +16,6 @@
   },
   "scripts": {
     "build": "tsc",
-    "start": "ts-node ./src/index.js"
+    "start": "ts-node ./src/index.ts"
   }
 }
